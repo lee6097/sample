@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>EMR 시스템 모방</title>
+    <style>
+        /* 1. 전체 설정: 여백을 없애고 화면 꽉 채우기 */
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* 화면 전체 높이 사용 */
+            font-family: 'Malgun Gothic', sans-serif; /* 깔끔한 폰트 */
+            display: flex; /* ★핵심: 가로로 배치하겠다는 선언 */
+            overflow: hidden; /* 스크롤이 겹치지 않게 */
+        }
+
+        /* 2. 왼쪽: 네비게이션 바 (짙은 남색) */
+        .nav-bar {
+            width: 60px; /* 고정된 너비 */
+            background-color: #1a233a; /* 짙은 남색 */
+            color: white;
+            display: flex;
+            flex-direction: column; /* 아이콘을 세로로 정렬 */
+            align-items: center;
+            padding-top: 20px;
+        }
+        .nav-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #2c3e50;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* 3. 중간: 환자 리스트 (회색/파란색) */
+        .patient-list {
+            width: 250px; /* 고정된 너비 */
+            background-color: #2c3549; /* 약간 밝은 남색 */
+            border-right: 1px solid #ddd;
+            display: flex;
+            flex-direction: column;
+        }
+        .patient-card {
+            background-color: #3b475f;
+            color: white;
+            padding: 15px;
+            margin: 5px;
+            border-left: 4px solid #3498db; /* 선택된 느낌의 파란 줄 */
+            font-size: 13px;
+        }
+        .timeline-item {
+            padding: 10px;
+            color: #aaa;
+            border-bottom: 1px solid #444;
+            font-size: 12px;
+        }
+
+        /* 4. 오른쪽: 메인 차트 (흰색 종이) */
+        .main-chart {
+            flex: 1; /* ★핵심: 남은 공간을 모두 차지해라! */
+            background-color: #f0f2f5; /* 배경은 연한 회색 */
+            padding: 20px;
+            overflow-y: auto; /* 내용이 많으면 스크롤 생기게 */
+            display: flex; /* 종이 두 장을 나란히 놓기 위해 */
+            gap: 20px; /* 종이 사이 간격 */
+        }
+        
+        /* 종이 스타일 */
+        .paper {
+            flex: 1;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1); /* 그림자 효과 */
+            padding: 30px;
+            height: 90%; /* 화면 꽉 차게 */
+            font-size: 12px; /* EMR 특유의 작은 글씨 */
+            line-height: 1.6;
+        }
+
+        /* 제목 스타일 */
+        h3 {
+            border-left: 5px solid darkblue;
+            padding-left: 10px;
+            color: #333;
+        }
+        
+        /* 강조 텍스트 */
+        .highlight {
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar">
+        <div class="nav-icon">메뉴</div>
+        <div class="nav-icon">검색</div>
+        <div class="nav-icon">병동</div>
+        <div class="nav-icon">설정</div>
+    </div>
+
+    <div class="patient-list">
+        <div class="patient-card">
+            <strong style="font-size: 16px;">김김김</strong> (F/44세)<br>
+            등록번호: 01010100<br>
+            주치의: 이이이
+        </div>
+        
+        <div class="timeline-item">2025-11-11 [외래]</div>
+        <div class="timeline-item">2025-10-17 [입원]</div>
+        <div class="timeline-item" style="background-color: #445; color:white;">2025-10-17 [응급] (선택됨)</div>
+        <div class="timeline-item">2024-08-01 [외래]</div>
+    </div>
+
+    <div class="main-chart">
+        <div class="paper">
+            <h3>주관적 소견 (S)</h3>
+            <p>컨디션 좋아요.</p>
+            <br>
+            <h3>객관적 소견 (O)</h3>
+            <p>
+                [검사명] Blood culture [검사자] 김김김<br>
+                [검사일] 2025-10-17<br>
+                ----------------------------------<br>
+                <span class="highlight">중간보고입니다. 최종판독내용을 확인하세요.</span>
+            </p>
+            <p>
+                임상소견: Peripheral vein #1<br>
+                No growth after 2 days <중간결과혐기성><br>
+                혈액량: 3ml
+            </p>
+        </div>
+
+        <div class="paper">
+            <h3>평가 (A)</h3>
+            <p>
+                * R/O Alcoholic hepatitis with Alc LC<br>
+                * Adrenal Insufficiency<br>
+                * Heavy alcoholics
+            </p>
+            <br>
+            <h3>치료계획 (P)</h3>
+            <p>
+                IV Empirical Ceftriaxone 10/17 - 10/21<br>
+                PIP/TAZ 10/21 - 10/29
+            </p>
+            <hr>
+            <p style="color: #555;">
+                # 74kg 기준 이뇨제 사용 예정<br>
+                -> 10/29 체중 조절 잘 안되며 이뇨제 증량 고려하였으나...<br>
+                -> 이뇨제 증량하면 20/50 -> 40/100
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
