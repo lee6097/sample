@@ -171,7 +171,7 @@ transform-origin: top left;
 .page h2{font-size:1rem;margin:12px 0 6px}
 .page p, .page li{line-height:1.45}
 .page footer{position:absolute; bottom:16px; left:0; right:0; text-align:center; color:#666; font-size:.85rem}
-
+.page{position:relative} 
 .page .small{font-size:.9rem; color:#333}
 .page .muted{color:#666}
 
